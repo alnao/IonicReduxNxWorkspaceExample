@@ -1,0 +1,489 @@
+{
+  "version": 2,
+  "projects": {
+    "example-central-lib": {
+      "projectType": "library",
+      "root": "libs/example-central-lib",
+      "sourceRoot": "libs/example-central-lib/src",
+      "prefix": "frontend",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/example-central-lib/src/**/*.ts",
+              "libs/example-central-lib/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/example-central-lib"],
+          "options": {
+            "jestConfig": "libs/example-central-lib/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "example-custom-lib": {
+      "projectType": "library",
+      "root": "libs/example-custom-lib",
+      "sourceRoot": "libs/example-custom-lib/src",
+      "prefix": "frontend",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/example-custom-lib/src/**/*.ts",
+              "libs/example-custom-lib/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/example-custom-lib"],
+          "options": {
+            "jestConfig": "libs/example-custom-lib/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "exampleapp": {
+      "projectType": "application",
+      "root": "apps/exampleapp",
+      "sourceRoot": "apps/exampleapp/src",
+      "prefix": "frontend",
+      "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/exampleapp",
+            "index": "apps/exampleapp/src/index.html",
+            "main": "apps/exampleapp/src/main.ts",
+            "polyfills": "apps/exampleapp/src/polyfills.ts",
+            "tsConfig": "apps/exampleapp/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/exampleapp/src/assets",
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+              }
+            ],
+            "styles": [
+              "apps/exampleapp/src/styles.scss",
+              {
+                "input": "apps/exampleapp/src/theme/variables.scss"
+              }
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/exampleapp/src/environments/environment.ts",
+                  "with": "apps/exampleapp/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "exampleapp:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "exampleapp:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "exampleapp:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/exampleapp/src/**/*.ts",
+              "apps/exampleapp/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/exampleapp"],
+          "options": {
+            "jestConfig": "apps/exampleapp/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "cap": {
+          "executor": "@nxtend/capacitor:cap",
+          "options": {
+            "cmd": "--help"
+          }
+        },
+        "add": {
+          "executor": "@nxtend/capacitor:cap",
+          "options": {
+            "cmd": "add"
+          },
+          "configurations": {
+            "ios": {
+              "cmd": "add ios"
+            },
+            "android": {
+              "cmd": "add android"
+            }
+          }
+        },
+        "copy": {
+          "executor": "@nxtend/capacitor:cap",
+          "options": {
+            "cmd": "copy"
+          },
+          "configurations": {
+            "ios": {
+              "cmd": "copy ios"
+            },
+            "android": {
+              "cmd": "copy android"
+            }
+          }
+        },
+        "open": {
+          "executor": "@nxtend/capacitor:cap",
+          "options": {
+            "cmd": "open"
+          },
+          "configurations": {
+            "ios": {
+              "cmd": "open ios"
+            },
+            "android": {
+              "cmd": "open android"
+            }
+          }
+        },
+        "run": {
+          "executor": "@nxtend/capacitor:cap",
+          "options": {
+            "cmd": "run"
+          },
+          "configurations": {
+            "ios": {
+              "cmd": "run ios"
+            },
+            "android": {
+              "cmd": "run android"
+            }
+          }
+        },
+        "sync": {
+          "executor": "@nxtend/capacitor:cap",
+          "options": {
+            "cmd": "sync"
+          },
+          "configurations": {
+            "ios": {
+              "cmd": "sync ios"
+            },
+            "android": {
+              "cmd": "sync android"
+            }
+          }
+        },
+        "update": {
+          "executor": "@nxtend/capacitor:cap",
+          "options": {
+            "cmd": "update"
+          },
+          "configurations": {
+            "ios": {
+              "cmd": "update ios"
+            },
+            "android": {
+              "cmd": "update android"
+            }
+          }
+        }
+      },
+      "tags": []
+    },
+    "exampleapp-e2e": {
+      "root": "apps/exampleapp-e2e",
+      "sourceRoot": "apps/exampleapp-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/exampleapp-e2e/cypress.json",
+            "tsConfig": "apps/exampleapp-e2e/tsconfig.e2e.json",
+            "devServerTarget": "exampleapp:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "exampleapp:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/exampleapp-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["exampleapp"]
+    },
+    "exampleweb": {
+      "projectType": "application",
+      "root": "apps/exampleweb",
+      "sourceRoot": "apps/exampleweb/src",
+      "prefix": "frontend",
+      "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/exampleweb",
+            "index": "apps/exampleweb/src/index.html",
+            "main": "apps/exampleweb/src/main.ts",
+            "polyfills": "apps/exampleweb/src/polyfills.ts",
+            "tsConfig": "apps/exampleweb/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/exampleweb/src/assets",
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+              }
+            ],
+            "styles": [
+              "apps/exampleweb/src/styles.scss",
+              {
+                "input": "apps/exampleweb/src/theme/variables.scss"
+              }
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/exampleweb/src/environments/environment.ts",
+                  "with": "apps/exampleweb/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "exampleweb:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "exampleweb:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "exampleweb:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/exampleweb/src/**/*.ts",
+              "apps/exampleweb/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/exampleweb"],
+          "options": {
+            "jestConfig": "apps/exampleweb/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "cap": {
+          "executor": "@nxtend/capacitor:cap",
+          "options": {
+            "cmd": "--help"
+          }
+        },
+        "add": {
+          "executor": "@nxtend/capacitor:cap",
+          "options": {
+            "cmd": "add"
+          },
+          "configurations": {
+            "ios": {
+              "cmd": "add ios"
+            },
+            "android": {
+              "cmd": "add android"
+            }
+          }
+        },
+        "copy": {
+          "executor": "@nxtend/capacitor:cap",
+          "options": {
+            "cmd": "copy"
+          },
+          "configurations": {
+            "ios": {
+              "cmd": "copy ios"
+            },
+            "android": {
+              "cmd": "copy android"
+            }
+          }
+        },
+        "open": {
+          "executor": "@nxtend/capacitor:cap",
+          "options": {
+            "cmd": "open"
+          },
+          "configurations": {
+            "ios": {
+              "cmd": "open ios"
+            },
+            "android": {
+              "cmd": "open android"
+            }
+          }
+        },
+        "run": {
+          "executor": "@nxtend/capacitor:cap",
+          "options": {
+            "cmd": "run"
+          },
+          "configurations": {
+            "ios": {
+              "cmd": "run ios"
+            },
+            "android": {
+              "cmd": "run android"
+            }
+          }
+        },
+        "sync": {
+          "executor": "@nxtend/capacitor:cap",
+          "options": {
+            "cmd": "sync"
+          },
+          "configurations": {
+            "ios": {
+              "cmd": "sync ios"
+            },
+            "android": {
+              "cmd": "sync android"
+            }
+          }
+        },
+        "update": {
+          "executor": "@nxtend/capacitor:cap",
+          "options": {
+            "cmd": "update"
+          },
+          "configurations": {
+            "ios": {
+              "cmd": "update ios"
+            },
+            "android": {
+              "cmd": "update android"
+            }
+          }
+        }
+      },
+      "tags": []
+    },
+    "exampleweb-e2e": {
+      "root": "apps/exampleweb-e2e",
+      "sourceRoot": "apps/exampleweb-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/exampleweb-e2e/cypress.json",
+            "tsConfig": "apps/exampleweb-e2e/tsconfig.e2e.json",
+            "devServerTarget": "exampleweb:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "exampleweb:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/exampleweb-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["exampleweb"]
+    }
+  }
+}
