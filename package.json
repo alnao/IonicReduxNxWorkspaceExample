@@ -29,6 +29,7 @@
     "@ngrx/store": "^11.0.0",
     "@nrwl/angular": "^12.0.0",
     "@nxtend/capacitor": "^12.0.0",
+    "httpclient": "^0.1.0",
     "redux": "^4.1.2",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.0",

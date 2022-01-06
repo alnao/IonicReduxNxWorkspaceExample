@@ -8,11 +8,13 @@ import { ExampleCentralLibModule } from '@frontend/example-central-lib';
 import { ExampleCustomLibModule } from '@frontend/example-custom-lib';
 
 import { HomePageRoutingModule } from './home-routing.module';
+import { AnnotazioniModule } from '../annotazioni/annotazioni.module';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule,
     HomePageRoutingModule,
-    ExampleCentralLibModule,ExampleCustomLibModule
+    ExampleCentralLibModule,ExampleCustomLibModule,
+    AnnotazioniModule
   ],
   declarations: [HomePage],
 })
