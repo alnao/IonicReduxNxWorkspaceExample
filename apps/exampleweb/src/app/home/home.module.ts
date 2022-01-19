@@ -9,12 +9,13 @@ import { ExampleCustomLibModule } from '@frontend/example-custom-lib';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { AnnotazioniModule } from '../annotazioni/annotazioni.module';
+import { AnnotazioneModule } from '../annotazione/annotazione.module';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule,
     HomePageRoutingModule,
     ExampleCentralLibModule,ExampleCustomLibModule,
-    AnnotazioniModule
+    AnnotazioniModule,AnnotazioneModule
   ],
   declarations: [HomePage],
 })

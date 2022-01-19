@@ -1,4 +1,54 @@
-# Frontend
+
+# Angular Ionic Redux Workspace
+
+## Run apps
+
+To run web 
+
+`$ nx serve exampleweb`
+
+To run app 
+
+`$ nx serve exampleapp --port 4201`
+
+## Create service 
+
+To create service 
+
+`$ ng generate service annotazioni`
+
+## Create redux
+
+To create redux components 
+
+`nx g @nrwl/angular:ngrx annotazioni --module=libs/example-central-lib/src/lib/example-central-lib.module.ts --directory +state/annotazioni --no-interactive`
+
+`nx generate @nrwl/angular:service services/annotazioni --project=example-central-lib --skip-import`
+
+## Create web components
+
+To create web components 
+
+`nx generate @nrwl/angular:module annotazioni --export=true --routing --project=exampleweb`
+
+`nx generate @nrwl/angular:component annotazioni --export=true --routing --project=exampleweb`
+
+To create app components 
+
+`nx generate @nrwl/angular:module annotazioni --export=true --routing --project=exampleapp`
+
+`nx generate @nrwl/angular:component annotazioni --export=true --routing --project=exampleapp`
+
+
+
+
+
+
+
+
+
+
+# README Nx 
 
 This project was generated using [Nx](https://nx.dev).
 

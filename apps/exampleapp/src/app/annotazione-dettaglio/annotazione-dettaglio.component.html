@@ -1,15 +1,14 @@
 <ion-content [fullscreen]="true">
     <ion-header >
       <ion-toolbar color="primary">
-        <ion-title size="large">Lista annotazioni</ion-title>
+        <ion-title size="large">Dettaglio annotazione</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-list *ngIf="isLoaded$ | async">
         <ion-item *ngFor="let el of list$ | async ; index as i"
-            [routerLink]="['/','annotazione', el.id ]"
-            lines="none" detail="true"  routerLinkActive="active"
         >
             <ion-label>{{el.nome}}</ion-label>
         </ion-item>
     </ion-list> 
+    https://ionicframework.com/docs/v3/developer-resources/forms/
 </ion-content> 

@@ -6,8 +6,9 @@
     </ion-header>
     <ion-list *ngIf="isLoaded$ | async">
         <ion-item *ngFor="let el of list$ | async ; index as i"
-            [routerLink]="['/','annotazione', el.id ]"
-            lines="none" detail="true"  routerLinkActive="active"
+
+            [routerLink]="['/','annotazione-dettaglio', el.id ]"
+            lines="none" detail="true" 
         >
             <ion-label>{{el.nome}}</ion-label>
         </ion-item>
