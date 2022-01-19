@@ -8,18 +8,26 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AnnotazioniModule } from './annotazioni/annotazioni.module';
+import { HttpClient } from '@angular/common/http';
+import { ExampleCustomLibModule } from '@frontend/example-custom-lib';
+import { ExampleCentralLibModule } from '@frontend/example-central-lib';
+import { AnnotazioneDettaglioComponent } from './annotazione-dettaglio/annotazione-dettaglio.component';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, AnnotazioneDettaglioComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), 
-    AppRoutingModule,
+    AppRoutingModule, AnnotazioniModule, 
     StoreModule.forRoot({}),
     EffectsModule.forRoot(),
-
+    ExampleCustomLibModule,ExampleCentralLibModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
+  exports: [
+    AnnotazioneDettaglioComponent
+  ],
 })
 export class AppModule {}
