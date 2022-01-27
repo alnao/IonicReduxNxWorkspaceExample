@@ -1,14 +1,17 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" >
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title> Annotazioni </ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content [fullscreen]="true">
-    <ion-header >
-      <ion-toolbar color="primary">
-        <ion-title size="large">Lista annotazioni</ion-title>
-      </ion-toolbar>
-    </ion-header>
     <ion-list *ngIf="isLoaded$ | async">
         <ion-item *ngFor="let el of list$ | async ; index as i"
-
-            [routerLink]="['/','annotazione-dettaglio', el.id ]"
-            lines="none" detail="true" 
+            [routerLink]="['/','annotazione', el.id ]"
+             detail="true"  routerLinkActive="active"
         >
             <ion-label>{{el.nome}}</ion-label>
         </ion-item>

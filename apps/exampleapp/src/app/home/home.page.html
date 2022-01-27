@@ -1,0 +1,17 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title> App AlNao Angular Ionic React </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-menu-toggle  auto-hide="false"  >
+    <ion-item routerDirection="root" routerLink="/annotazioni" routerLinkActive="selected" detail="true" >
+      <ion-label   >Lista Annotazioni</ion-label>
+    </ion-item>
+    <ion-item>
+      <frontend-echo-component></frontend-echo-component>
+    </ion-item>
+</ion-menu-toggle>
+
+</ion-content>

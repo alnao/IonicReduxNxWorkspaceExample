@@ -1,0 +1,41 @@
+<ion-content [fullscreen]="true" *ngIf="isLoaded$ | async">
+    <ion-header >
+      <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="home"></ion-back-button>
+        </ion-buttons>
+        <ion-title size="large">Dettaglio annotazione</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+
+    <ion-list  *ngFor="let el of list$ | async ; index as i">
+      <ion-item>
+        <h2>{{el.nome}}</h2>
+      </ion-item>
+
+      <ion-item >        
+        {{el.descrizione}}
+      </ion-item>
+      <ion-item >  
+        <ion-label color="medium" >Stato</ion-label>
+        <ion-label slot="end">{{el.stato}}</ion-label>
+      </ion-item>
+      <ion-item >  
+        <ion-label color="medium" >Tipo</ion-label>
+        <ion-label slot="end">{{el.tipo}}</ion-label>
+      </ion-item>
+      <ion-item >        
+        <ion-label color="medium" >Fase</ion-label>
+        <ion-label slot="end">{{el.fase}}</ion-label>
+      </ion-item>
+      <ion-item >        
+        <ion-label color="medium" >Data inserimento</ion-label>
+        <ion-label slot="end">{{el.datainserimento}}</ion-label>
+      </ion-item>
+      <ion-item >        
+        <ion-label color="medium" >Utente</ion-label>
+        <ion-label slot="end">{{el.utenteinserimento}}</ion-label>
+      </ion-item>
+    </ion-list>
+</ion-content> 

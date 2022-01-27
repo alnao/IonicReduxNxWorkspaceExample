@@ -1,27 +1,26 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AnnotazioneDettaglioComponent } from './annotazione-dettaglio/annotazione-dettaglio.component';
-
+import { AnnotazioneComponent } from './annotazione/annotazione.component';
+import { AnnotazioniComponent } from './annotazioni/annotazioni.component';
 
 const routes: Routes = [
   {
+    path: 'home',
+    loadChildren: () =>
+      import('./home/home.module').then((m) => m.HomePageModule),
+  },
+  {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
-    path: 'folder/:id',
-    loadChildren: () =>
-      import('./folder/folder.module').then((m) => m.FolderPageModule),
-  },
-  {
     path: 'annotazioni',
-    loadChildren: () =>
-      import('./annotazioni/annotazioni.module').then((m) => m.AnnotazioniModule),
+    component : AnnotazioniComponent
   },
   {
-    path: 'annotazione-dettaglio/:id',
-    component : AnnotazioneDettaglioComponent
+    path: 'annotazione/:id',
+    component : AnnotazioneComponent
   }
 ];
 
