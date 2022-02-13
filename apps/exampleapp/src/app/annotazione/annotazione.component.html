@@ -8,33 +8,46 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" *ngIf="isLoaded$ | async">
-    <ion-list  *ngFor="let el of list$ | async ; index as i">
+    <ion-list  *ngFor="let el of list$ | async ; index as i"  [formGroup]="noteForm">
       <ion-item>
-        <h2>{{el.nome}}</h2>
+        <ion-label  position="stacked" color="medium" >Id</ion-label>
+        <ion-input type="text" id="id" name="id" formControlName="id"></ion-input>
       </ion-item>
-
+      <ion-item>
+        <ion-label  position="stacked" color="medium" >Nome</ion-label>
+        <ion-input type="text" id="nome" name="nome" formControlName="nome"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label  position="stacked" color="medium" >Descrizione</ion-label>
+        <ion-input type="text" id="descrizione" name="descrizione" formControlName="descrizione"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label  position="stacked" color="medium" >Tipo</ion-label>
+        <ion-input type="text" id="tipo" name="tipo" formControlName="tipo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label  position="stacked" color="medium" >Stato</ion-label>
+        <ion-input type="text" id="stato" name="stato" formControlName="stato"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label  position="stacked" color="medium" >Fase</ion-label>
+        <ion-input type="text" id="fase" name="fase" formControlName="fase"></ion-input>
+      </ion-item>
       <ion-item >        
-        {{el.descrizione}}
-      </ion-item>
-      <ion-item >  
-        <ion-label color="medium" >Stato</ion-label>
-        <ion-label slot="end">{{el.stato}}</ion-label>
-      </ion-item>
-      <ion-item >  
-        <ion-label color="medium" >Tipo</ion-label>
-        <ion-label slot="end">{{el.tipo}}</ion-label>
-      </ion-item>
-      <ion-item >        
-        <ion-label color="medium" >Fase</ion-label>
-        <ion-label slot="end">{{el.fase}}</ion-label>
-      </ion-item>
-      <ion-item >        
-        <ion-label color="medium" >Data inserimento</ion-label>
+        <ion-label  position="stacked" color="medium" >Data inserimento</ion-label>
         <ion-label slot="end">{{el.datainserimento}}</ion-label>
       </ion-item>
       <ion-item >        
-        <ion-label color="medium" >Utente</ion-label>
+        <ion-label   position="stacked"color="medium" >Utente</ion-label>
         <ion-label slot="end">{{el.utenteinserimento}}</ion-label>
+      </ion-item>
+      <ion-item *ngIf="el.utentemodifica !== '' ">        
+        <ion-label  position="stacked" color="medium" >Data ultima modifica</ion-label>
+        <ion-label slot="end">{{el.datamodifica}}</ion-label>
+      </ion-item>
+      <ion-item *ngIf="el.utentemodifica !== '' "> 
+        <ion-label   position="stacked"color="medium" >Utente ultima modifica</ion-label>
+        <ion-label slot="end">{{el.utentemodifica}}</ion-label>
       </ion-item>
     </ion-list>
 </ion-content> 
