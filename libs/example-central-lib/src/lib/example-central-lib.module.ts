@@ -8,10 +8,13 @@ import { EchoEffects } from "./+state/echo/echo.effects";
 import { ExampleCustomLibModule } from "@frontend/example-custom-lib";
 import * as fromAnnotazioni from "./+state/annotazioni/annotazioni.reducer";
 import { AnnotazioniEffects } from "./+state/annotazioni/annotazioni.effects";
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from "@angular/common/http";
+import * as fromUpdateannotazione from "./+state/annotazioni/updateannotazione.reducer";
+import { UpdateannotazioneEffects } from "./+state/annotazioni/updateannotazione.effects";
 
 @NgModule({
-  imports: [HttpClientModule,
+  imports: [
+    HttpClientModule,
     /*ExampleCustomLibModule,*/ CommonModule,
     StoreModule.forFeature(fromEcho.ECHO_FEATURE_KEY, fromEcho.reducer),
     EffectsModule.forFeature([EchoEffects]),
@@ -20,6 +23,11 @@ import { HttpClientModule } from '@angular/common/http';
       fromAnnotazioni.annotazioniReducerMethod
     ),
     EffectsModule.forFeature([AnnotazioniEffects]),
+    StoreModule.forFeature(
+      fromUpdateannotazione.UPDATEANNOTAZIONE_FEATURE_KEY,
+      fromUpdateannotazione.UpdateannotazioneReducer
+    ),
+    EffectsModule.forFeature([UpdateannotazioneEffects]),
   ],
 })
 export class ExampleCentralLibModule {}

@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  urlAnnotazioni: "http://localhost/Php/PhpMyWeb12papi/CmanagerAnnotazioni.php"
 };
 
 /*

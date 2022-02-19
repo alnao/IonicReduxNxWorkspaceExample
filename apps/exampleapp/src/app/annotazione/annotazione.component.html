@@ -4,6 +4,11 @@
       <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
     <ion-title> Dettaglio </ion-title>
+    <ion-buttons slot="end" >
+      <ion-button [disabled]="!noteForm.valid" (click)="onSubmit()" color="dark" outline round small>
+        Salva <ion-icon name="save-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -50,4 +55,5 @@
         <ion-label slot="end">{{el.utentemodifica}}</ion-label>
       </ion-item>
     </ion-list>
+
 </ion-content> 
