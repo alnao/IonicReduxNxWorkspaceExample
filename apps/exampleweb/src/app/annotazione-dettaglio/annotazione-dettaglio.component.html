@@ -7,13 +7,10 @@
         <ion-title size="large">Dettaglio annotazione</ion-title>
       </ion-toolbar>
     </ion-header>
-
-
     <ion-list  *ngFor="let el of list$ | async ; index as i">
       <ion-item>
         <h2>{{el.nome}}</h2>
       </ion-item>
-
       <ion-item >        
         {{el.descrizione}}
       </ion-item>
@@ -31,7 +28,7 @@
       </ion-item>
       <ion-item >        
         <ion-label color="medium" >Data inserimento</ion-label>
-        <ion-label slot="end">{{el.datainserimento}}</ion-label>
+        <ion-label slot="end">{{el.datainserimento | date : 'dd/MM/yy HH:mm'}}</ion-label>
       </ion-item>
       <ion-item >        
         <ion-label color="medium" >Utente</ion-label>

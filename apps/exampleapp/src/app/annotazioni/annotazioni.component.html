@@ -4,10 +4,18 @@
       <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
     <ion-title> Annotazioni </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button [routerLink]="['/','annotazione', '0' ]" color="dark" outline round small>
+        New
+        <ion-icon slot="end" name="create"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
+  
 </ion-header>
 
 <ion-content [fullscreen]="true">
+    <ion-searchbar showCancelButton="never" color="medium" animated placeholder="Ricerca" (keyup)="filtra($event)" ></ion-searchbar>
     <ion-list *ngIf="isLoaded$ | async">
         <ion-item *ngFor="let el of list$ | async ; index as i"
             [routerLink]="['/','annotazione', el.id ]"

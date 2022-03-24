@@ -3,6 +3,7 @@
       <ion-toolbar color="primary">
         <ion-title size="large">Lista annotazioni</ion-title>
       </ion-toolbar>
+      <ion-searchbar showCancelButton="never" color="medium" animated placeholder="Ricerca" (keyup)="filtra($event)" ></ion-searchbar>
     </ion-header>
     <ion-list *ngIf="isLoaded$ | async">
         <ion-item *ngFor="let el of list$ | async ; index as i"

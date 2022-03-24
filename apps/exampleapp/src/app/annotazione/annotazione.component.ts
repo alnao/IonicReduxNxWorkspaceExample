@@ -27,7 +27,7 @@ export class AnnotazioneComponent implements OnInit {
     ).pipe(map(annotazioni => annotazioni.filter( annotazione => {return annotazione.id===this.route.snapshot.params.id})));
   isLoaded$: Observable<any> = this.store.pipe(select(getAnnotazioniLoaded));
   resultUpdate$ : Observable<any>;
-
+  element : AnnotazioniEntity = null;
   ngOnInit(): void {
     //console.log(this.route.snapshot.params.id);
     //this.list$=this.list$.map(annotazioni => annotazioni.filter( annotazione => annotazione.id===this.route.snapshot.params.id));
@@ -40,16 +40,21 @@ export class AnnotazioneComponent implements OnInit {
 
     const myObserver = {
       next: (list: AnnotazioniEntity[]) => {
-        this.noteForm.controls['id'].setValue(list[0].id);
-        this.noteForm.controls['nome'].setValue(list[0].nome);
-        this.noteForm.controls['descrizione'].setValue(list[0].descrizione);
-        this.noteForm.controls['tipo'].setValue(list[0].tipo);
-        this.noteForm.controls['stato'].setValue(list[0].stato);
-        this.noteForm.controls['fase'].setValue(list[0].fase);
-        this.noteForm.controls['datainserimento'].setValue(list[0].datainserimento);
-        this.noteForm.controls['utenteinserimento'].setValue(list[0].utenteinserimento);
-        this.noteForm.controls['datamodifica'].setValue(list[0].datamodifica);
-        this.noteForm.controls['utentemodifica'].setValue(list[0].utentemodifica);
+        if (this.route.snapshot.params.id != '0'){
+          this.noteForm.controls['id'].setValue(list[0].id);
+          this.noteForm.controls['nome'].setValue(list[0].nome);
+          this.noteForm.controls['descrizione'].setValue(list[0].descrizione);
+          this.noteForm.controls['tipo'].setValue(list[0].tipo);
+          this.noteForm.controls['stato'].setValue(list[0].stato);
+          this.noteForm.controls['fase'].setValue(list[0].fase);
+          this.noteForm.controls['datainserimento'].setValue(list[0].datainserimento);
+          this.noteForm.controls['utenteinserimento'].setValue(list[0].utenteinserimento);
+          this.noteForm.controls['datamodifica'].setValue(list[0].datamodifica);
+          this.noteForm.controls['utentemodifica'].setValue(list[0].utentemodifica);
+          this.element=list[0];
+        }else{
+          this.noteForm.controls['id'].setValue("0");
+        }
       },error: (err: Error) => console.error('Observer got an error: ' + err),
       complete: () => {},
     };
@@ -63,6 +68,12 @@ export class AnnotazioneComponent implements OnInit {
     const id=this.noteForm.value.id;
     //form --> UpdateannotazioneEntity with the same attribute
     let element : UpdateannotazioneEntity= this.noteForm.value ;
+    if (id==0){
+      element.datainserimento=""+Date.now();
+      element.utenteinserimento="Utente";
+    }
+    element.datamodifica=""+Date.now();
+    element.utentemodifica="Utente"
     //dispach init action to call service
     this.store.dispatch( loadUpdateannotazioneInit({id,element}) );
     //substribe to success or error message

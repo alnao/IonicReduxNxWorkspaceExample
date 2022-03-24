@@ -15,9 +15,10 @@ export class AnnotazioniService {
     return this.httpClient.get(`${this.urlApi}`);
   }
 
-  put(id : any,element : AnnotazioniEntity): Observable<AnnotazioniEntity> {
-    return this.httpClient.put<AnnotazioniEntity>(`${this.urlApi}?id=${id}`,element);
-  }
-
-  
+  putPost(id : any,element : AnnotazioniEntity): Observable<AnnotazioniEntity> {
+    if (id==0)
+      return this.httpClient.post<AnnotazioniEntity>(`${this.urlApi}`,element);
+    else
+      return this.httpClient.put<AnnotazioniEntity>(`${this.urlApi}?id=${id}`,element);
+  }  
 }

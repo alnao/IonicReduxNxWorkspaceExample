@@ -6,17 +6,19 @@
     <ion-title> Dettaglio </ion-title>
     <ion-buttons slot="end" >
       <ion-button [disabled]="!noteForm.valid" (click)="onSubmit()" color="dark" outline round small>
-        Salva <ion-icon name="save-outline"></ion-icon>
+        Salva 
+        <ion-icon name="save-outline" slot="end"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" *ngIf="isLoaded$ | async">
-    <ion-list  *ngFor="let el of list$ | async ; index as i"  [formGroup]="noteForm">
-      <ion-item>
+    <ion-list   [formGroup]="noteForm">
+      <ion-item *ngIf="route.snapshot.params.id != 0">
         <ion-label  position="stacked" color="medium" >Id</ion-label>
-        <ion-input type="text" id="id" name="id" formControlName="id"></ion-input>
+        <ion-input type="hidden" id="id" name="id" formControlName="id"></ion-input>
+        {{noteForm.controls['id'].value}}
       </ion-item>
       <ion-item>
         <ion-label  position="stacked" color="medium" >Nome</ion-label>
@@ -38,22 +40,22 @@
         <ion-label  position="stacked" color="medium" >Fase</ion-label>
         <ion-input type="text" id="fase" name="fase" formControlName="fase"></ion-input>
       </ion-item>
-      <ion-item >        
+      <ion-item *ngIf="route.snapshot.params.id != 0">
         <ion-label  position="stacked" color="medium" >Data inserimento</ion-label>
-        <ion-label slot="end">{{el.datainserimento}}</ion-label>
+        <ion-label slot="end">{{element.datainserimento | date : 'dd/MM/yy HH:mm'}}</ion-label>
       </ion-item>
-      <ion-item >        
+      <ion-item *ngIf="route.snapshot.params.id != 0">
         <ion-label   position="stacked"color="medium" >Utente</ion-label>
-        <ion-label slot="end">{{el.utenteinserimento}}</ion-label>
+        <ion-label slot="end">{{element.utenteinserimento}}</ion-label>
       </ion-item>
-      <ion-item *ngIf="el.utentemodifica !== '' ">        
+      <ion-item *ngIf="route.snapshot.params.id != 0">
         <ion-label  position="stacked" color="medium" >Data ultima modifica</ion-label>
-        <ion-label slot="end">{{el.datamodifica}}</ion-label>
+        <ion-label slot="end">{{element.datamodifica | date : 'dd/MM/yy HH:mm'}}</ion-label>
       </ion-item>
-      <ion-item *ngIf="el.utentemodifica !== '' "> 
+      <ion-item *ngIf="route.snapshot.params.id != 0">
         <ion-label   position="stacked"color="medium" >Utente ultima modifica</ion-label>
-        <ion-label slot="end">{{el.utentemodifica}}</ion-label>
+        <ion-label slot="end">{{element.utentemodifica }}</ion-label>
       </ion-item>
     </ion-list>
-
+    
 </ion-content> 

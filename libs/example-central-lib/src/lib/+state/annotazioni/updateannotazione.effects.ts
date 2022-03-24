@@ -13,7 +13,7 @@ export class UpdateannotazioneEffects {
     this.actions$.pipe(
       ofType(UpdateannotazioneActions.loadUpdateannotazioneInit),
       fetch({ 
-        run:(action) => this.service.put(action.id,action.element).pipe(map((response) =>
+        run:(action) => this.service.putPost(action.id,action.element).pipe(map((response) =>
           UpdateannotazioneActions.loadUpdateannotazioneSuccess({updateannotazione: [action.element]}) )
         )
       ,onError: (action, error) => 

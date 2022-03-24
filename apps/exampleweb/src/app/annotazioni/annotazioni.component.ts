@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { getAllAnnotazioni, getAnnotazioniLoaded, loadAnnotazioniInit } from '@frontend/example-central-lib';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'frontend-annotazioni',
@@ -22,5 +23,10 @@ export class AnnotazioniComponent implements OnInit {
   }
 
   ngOnInit(): void { this.loadAnnotazioni();  }
-
+  filtra( el : any){
+    const value=el.target.value;
+    this.list$ = this.store.pipe(select(getAllAnnotazioni)).pipe(
+      map(items => items.filter( item => item.nome.toLowerCase().indexOf(value) > -1 ))
+    );
+  }
 }
