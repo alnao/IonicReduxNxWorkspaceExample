@@ -21,23 +21,32 @@
         {{noteForm.controls['id'].value}}
       </ion-item>
       <ion-item>
-        <ion-label  position="stacked" color="medium" >Nome</ion-label>
+        <ion-label  position="stacked" color="medium" >Nome 
+            <ion-icon *ngIf="noteForm.controls['nome'].invalid" name="alert-circle-outline" color="danger"></ion-icon>
+        </ion-label>
         <ion-input type="text" id="nome" name="nome" formControlName="nome"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label  position="stacked" color="medium" >Descrizione</ion-label>
+        <ion-label  position="stacked" color="medium" >Descrizione
+          <ion-icon *ngIf="noteForm.controls['descrizione'].invalid" name="alert-circle-outline" color="danger"></ion-icon>
+        </ion-label>
         <ion-input type="text" id="descrizione" name="descrizione" formControlName="descrizione"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label  position="stacked" color="medium" >Tipo</ion-label>
+        <ion-label  position="stacked" color="medium" >Tipo 
+            <ion-icon *ngIf="noteForm.controls['tipo'].invalid" name="alert-circle-outline" color="danger"></ion-icon></ion-label>
         <ion-input type="text" id="tipo" name="tipo" formControlName="tipo"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label  position="stacked" color="medium" >Stato</ion-label>
+        <ion-label  position="stacked" color="medium" >Stato 
+          <ion-icon *ngIf="noteForm.controls['stato'].invalid" name="alert-circle-outline" color="danger"></ion-icon>
+        </ion-label>
         <ion-input type="text" id="stato" name="stato" formControlName="stato"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label  position="stacked" color="medium" >Fase</ion-label>
+        <ion-label  position="stacked" color="medium" >Fase
+          <ion-icon *ngIf="noteForm.controls['fase'].invalid" name="alert-circle-outline" color="danger"></ion-icon>
+        </ion-label>
         <ion-input type="text" id="fase" name="fase" formControlName="fase"></ion-input>
       </ion-item>
       <ion-item *ngIf="route.snapshot.params.id != 0">
@@ -57,5 +66,4 @@
         <ion-label slot="end">{{element.utentemodifica }}</ion-label>
       </ion-item>
     </ion-list>
-    
 </ion-content> 

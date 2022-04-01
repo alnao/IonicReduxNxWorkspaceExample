@@ -33,8 +33,16 @@ export class AnnotazioneComponent implements OnInit {
     //this.list$=this.list$.map(annotazioni => annotazioni.filter( annotazione => annotazione.id===this.route.snapshot.params.id));
     this.noteForm = this.formBuilder.group({
       id :['', [Validators.required]],
-      nome :['', [Validators.required]],
-      descrizione:[],tipo:[],stato:[],fase:[],
+      nome :['', Validators.compose([
+        Validators.maxLength(25),
+        Validators.minLength(5),
+        //Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
+        Validators.required
+        ])],
+      descrizione:['',[ Validators.maxLength(250)]],
+      tipo:['',[Validators.maxLength(250)]],
+      stato:['',[Validators.pattern('^attivo$|^bloccato$') ]],
+      fase:['',[Validators.maxLength(250)]],
       datainserimento:[],utenteinserimento:[],datamodifica:[],utentemodifica:[]
     });
 
