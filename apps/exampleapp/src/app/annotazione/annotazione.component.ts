@@ -22,7 +22,7 @@ export class AnnotazioneComponent implements OnInit {
     private formBuilder: FormBuilder,
     private actionListener$: ActionsSubject
   ) { }
-  
+  showSpinner: Boolean = false;
   list$: Observable<AnnotazioniEntity[]> = this.store.pipe(select(getAllAnnotazioni)
     ).pipe(map(annotazioni => annotazioni.filter( annotazione => {return annotazione.id===this.route.snapshot.params.id})));
   isLoaded$: Observable<any> = this.store.pipe(select(getAnnotazioniLoaded));
@@ -85,9 +85,11 @@ export class AnnotazioneComponent implements OnInit {
     //dispach init action to call service
     this.store.dispatch( loadUpdateannotazioneInit({id,element}) );
     //substribe to success or error message
+    this.showSpinner=true;
     this.actionListener$.pipe(skip(1) // optional: skips initial logging done by ngrx
     ).pipe(ofType(loadUpdateannotazioneSuccess),
       ).subscribe((action) => {
+        this.showSpinner=false;
         console.log("success");
         this.store.dispatch(loadAnnotazioniInit()); //to reload all list
         this.router.navigate(["annotazioni"]); //route to the list
