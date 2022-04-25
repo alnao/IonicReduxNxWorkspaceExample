@@ -9,6 +9,8 @@ import { ExampleCustomLibModule } from "@frontend/example-custom-lib";
 import * as fromAnnotazioni from "./+state/annotazioni/annotazioni.reducer";
 import { AnnotazioniEffects } from "./+state/annotazioni/annotazioni.effects";
 import { HttpClientModule } from "@angular/common/http";
+//import { HTTP } from '@ionic-native/http/ngx';
+//import { Http } from '@capacitor-community/http';
 import * as fromUpdateannotazione from "./+state/annotazioni/updateannotazione.reducer";
 import { UpdateannotazioneEffects } from "./+state/annotazioni/updateannotazione.effects";
 
@@ -28,6 +30,7 @@ import { UpdateannotazioneEffects } from "./+state/annotazioni/updateannotazione
       fromUpdateannotazione.UpdateannotazioneReducer
     ),
     EffectsModule.forFeature([UpdateannotazioneEffects]),
-  ],
+  ]//,providers: [HTTP]
+
 })
 export class ExampleCentralLibModule {}

@@ -17,14 +17,15 @@ export class AnnotazioniEffects {
   //@Effect() //https://www.codemag.com/Article/1811061/Angular-and-the-Store
   load$ = createEffect(() =>
     this.actions$.pipe (
-    ofType(AnnotazioniActions.loadAnnotazioniInit),
-    fetch({ 
-      run:(action) => this.service.get().pipe(map((response) =>
-        AnnotazioniActions.loadAnnotazioniSuccess({annotazioni:response}) )
-      )
-    ,onError: (action, error) => 
-        AnnotazioniActions.loadAnnotazioniFailure({ error })
-    })
+      ofType(AnnotazioniActions.loadAnnotazioniInit),
+      fetch({ 
+        run:(action) => this.service.get()
+          .pipe(map((response) => AnnotazioniActions.loadAnnotazioniSuccess({annotazioni:response}) )
+          //.then(res => AnnotazioniActions.loadAnnotazioniSuccess({annotazioni:JSON.parse(res.data)}) )) 
+        )
+      ,onError: (action, error) => 
+          AnnotazioniActions.loadAnnotazioniFailure({ error })
+      })
   ));
 /*
   init$ = createEffect(() =>

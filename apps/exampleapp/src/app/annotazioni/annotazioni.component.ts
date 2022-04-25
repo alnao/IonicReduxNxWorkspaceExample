@@ -37,7 +37,7 @@ export class AnnotazioniComponent implements OnInit {
     ).pipe(ofType(loadAnnotazioniFailure),
       ).subscribe((action) => {
         console.log("Errore:" + action.error.message);
-        this.alertError(action.error.message , "" );
+        this.alertError(action.error.message + JSON.stringify(action.error), "" );
       });
     setTimeout(() => this.searchbar.setFocus(), 300);
   }
