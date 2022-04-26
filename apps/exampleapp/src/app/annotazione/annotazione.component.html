@@ -66,11 +66,6 @@
       <ion-label slot="end">{{element.utentemodifica }}</ion-label>
     </ion-item>
   </ion-list>
-  <ion-card *ngIf="showSpinner" color="medium" ><ion-card-content color="medium" >
-    <h1 class="ion-text-center">
-      <ion-spinner slot="center"  name="bubbles" [paused]="false" color="dark"></ion-spinner>
-      Salvataggio in corso
-      <ion-spinner slot="center"  name="bubbles" [paused]="false" color="dark"></ion-spinner>
-    </h1>
-  </ion-card-content></ion-card>
+  <frontend-spinner *ngIf="showSpinner" [testo]="spinnerMessage"></frontend-spinner>
+ 
 </ion-content> 

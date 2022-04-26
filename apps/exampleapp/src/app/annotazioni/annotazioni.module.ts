@@ -5,6 +5,7 @@ import { AnnotazioniRoutingModule } from './annotazioni-routing.module';
 import { AnnotazioniComponent } from './annotazioni.component';
 import { IonicModule } from '@ionic/angular';
 import { AnnotazioneModule } from '../annotazione/annotazione.module';
+import { ExampleCustomLibModule } from '@frontend/example-custom-lib';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { AnnotazioneModule } from '../annotazione/annotazione.module';
   ],
   imports: [IonicModule,
     CommonModule,
-    AnnotazioniRoutingModule,AnnotazioneModule
+    AnnotazioniRoutingModule,
+    ExampleCustomLibModule,
   ],
   exports: [
     AnnotazioniComponent

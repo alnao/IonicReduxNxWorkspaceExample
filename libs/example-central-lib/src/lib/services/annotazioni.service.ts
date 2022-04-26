@@ -4,21 +4,23 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AnnotazioniEntity } from '../+state/annotazioni/annotazioni.models';
 import { from } from 'rxjs';
+import { environment } from '../../../../../apps/exampleapp/src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AnnotazioniService {
-  urlApi: String='http://www.alnao.it/my/lista.php';
-    //http://localhost/Php/PhpMyWeb12papi/CmanagerAnnotazioni.php'
-
+  //urlApi: String='http://localhost/Php/PhpMyWeb12papi/CmanagerAnnotazioni.php';
+  urlApi: string= environment.urlApi;
+  
   constructor(private httpClient: HttpClient ) {}
   /* HTTP STANDARD */
   get(): Observable<any> {
+    
      const headerDict = {
       //'Content-Type': 'application/json',
-      'Accept': 'text/plain,application/json,text/html,application/xhtml+xml,application/xml;q=0.9',
+      //'Accept': 'text/plain,application/json,text/html,application/xhtml+xml,application/xml;q=0.9',
       //'Access-Control-Allow-Origins':'*',
       //'Access-Control-Allow-Methods':'GET,POST,PUT,PATCH,DELETE,OPTIONS'
     }
@@ -36,6 +38,7 @@ export class AnnotazioniService {
 
   /*
   get(): Observable<any> { //https://github.com/capacitor-community/http
+    //npm install @capacitor-community/http
     const options = {
       url: `${this.urlApi}`,
       //headers: { 'X-Fake-Header': 'Max was here' },
@@ -47,6 +50,7 @@ export class AnnotazioniService {
   }*/
 
   /* HTTP CORDOVA KO
+  
   //import { HTTP } from '@ionic-native/http/ngx';
   constructor(private httpClient: HTTP  ,private httpClient2: HttpClient ) {}
   get(): Observable<any> {

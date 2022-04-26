@@ -15,7 +15,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-    <ion-searchbar showCancelButton="never" color="medium" animated placeholder="Ricerca" (keyup)="filtra($event)" #autofocus ></ion-searchbar>
+    <ion-searchbar *ngIf="isLoaded$ | async" showCancelButton="never" color="medium" animated placeholder="Ricerca" (keyup)="filtra($event)" #autofocus ></ion-searchbar>
     <ion-list *ngIf="isLoaded$ | async">
         <ion-item *ngFor="let el of list$ | async ; index as i"
             [routerLink]="['/','annotazione', el.id ]"
@@ -24,4 +24,5 @@
             <ion-label>{{el.nome}}</ion-label>
         </ion-item>
     </ion-list> 
+    <frontend-spinner *ngIf="!(isLoaded$ | async)" [testo]="spinnerMessage"></frontend-spinner>
 </ion-content> 

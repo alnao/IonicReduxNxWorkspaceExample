@@ -23,6 +23,7 @@ export class AnnotazioniComponent implements OnInit {
   //proprietà del componente che richiano i selectors
   list$: Observable<AnnotazioniEntity[]> = this.store.pipe(select(getAllAnnotazioni));
   isLoaded$: Observable<any> = this.store.pipe(select(getAnnotazioniLoaded));
+  spinnerMessage: string = "Caricamento in corso";
   //bottone che esegue il dispatch della action init
   buttonLoadAnnotazioni() {
     this.store.dispatch(loadAnnotazioniInit());
@@ -39,7 +40,7 @@ export class AnnotazioniComponent implements OnInit {
         console.log("Errore:" + action.error.message);
         this.alertError(action.error.message + JSON.stringify(action.error), "" );
       });
-    setTimeout(() => this.searchbar.setFocus(), 300);
+    setTimeout(() => {if (this.isLoaded$) {this.searchbar.setFocus()}}, 1000);
   }
   async alertError(message:string, routerTo: string) {
     const alert = await this.alertController.create({

@@ -1,5 +1,4 @@
 import { CapacitorConfig } from '@capacitor/cli';
-
 const config: CapacitorConfig = {
   appId: 'it.alnao',
   appName: 'alnaoIonic',
@@ -12,9 +11,7 @@ const config: CapacitorConfig = {
   },
   cordova : {},
   server:{
-    allowNavigation : ['*']
+    allowNavigation : ['18.161.111.62']
   }
-  
 };
-
 export default config;

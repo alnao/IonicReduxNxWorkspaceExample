@@ -28,6 +28,8 @@ export class AnnotazioneComponent implements OnInit {
   isLoaded$: Observable<any> = this.store.pipe(select(getAnnotazioniLoaded));
   resultUpdate$ : Observable<any>;
   element : AnnotazioniEntity = null;
+  spinnerMessage : String = "Salvataggio in corso";
+
   ngOnInit(): void {
     //console.log(this.route.snapshot.params.id);
     //this.list$=this.list$.map(annotazioni => annotazioni.filter( annotazione => annotazione.id===this.route.snapshot.params.id));
