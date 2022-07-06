@@ -2,7 +2,7 @@ import { Component, OnInit, SystemJsNgModuleLoader, ViewChild } from '@angular/c
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AnnotazioniEntity, getAllAnnotazioni, getAnnotazioniLoaded, loadAnnotazioniFailure, loadAnnotazioniInit, loadAnnotazioniSuccess, loadUpdateannotazioneFailure, loadUpdateannotazioneSuccess } from '@frontend/example-central-lib';
-import { IonSearchbar } from '@ionic/angular';
+import { IonSearchbar, LoadingController } from '@ionic/angular';
 import { AnnotazioniEffects } from 'libs/example-central-lib/src/lib/+state/annotazioni/annotazioni.effects';
 import { Observable } from 'rxjs';
 import { ActionsSubject, select, Store } from '@ngrx/store';
@@ -19,6 +19,7 @@ export class AnnotazioniComponent implements OnInit {
   //costruttore con l'accesso allo store e al routing
   constructor(private store: Store, private router: Router,
     private actionListener$: ActionsSubject,private alertController: AlertController
+    ,private loadingController: LoadingController
     ){  }
   //proprietà del componente che richiano i selectors
   list$: Observable<AnnotazioniEntity[]> = this.store.pipe(select(getAllAnnotazioni));
@@ -26,11 +27,13 @@ export class AnnotazioniComponent implements OnInit {
   spinnerMessage: string = "Caricamento in corso";
   //bottone che esegue il dispatch della action init
   buttonLoadAnnotazioni() {
+    
     this.store.dispatch(loadAnnotazioniInit());
   }
   @ViewChild('autofocus', { static: false }) searchbar: IonSearchbar;
 
   ngOnInit(): void {
+    this.loadingShow();
     this.buttonLoadAnnotazioni();
     
 
@@ -41,6 +44,12 @@ export class AnnotazioniComponent implements OnInit {
         this.alertError(action.error.message + JSON.stringify(action.error), "" );
       });
     setTimeout(() => {if (this.isLoaded$) {this.searchbar.setFocus()}}, 1000);
+
+    this.actionListener$.pipe(skip(1) // optional: skips initial logging done by ngrx
+    ).pipe(ofType( loadAnnotazioniSuccess ),
+      ).subscribe((action) => {
+        this.loadingHide();
+      });
   }
   async alertError(message:string, routerTo: string) {
     const alert = await this.alertController.create({
@@ -54,7 +63,25 @@ export class AnnotazioniComponent implements OnInit {
       
     });
     await alert.present();
+    this.loadingHide();
   }
+  async loadingShow() { //https://ionicframework.com/docs/api/loading
+    const loading = await this.loadingController.create({
+      message: 'Loading...',
+      duration: 3000000,
+      spinner: 'circles'
+    });
+    loading.present();
+    console.log("loadingShow present");
+  }
+  async loadingHide(){ //https://www.positronx.io/ionic-loading-controller-tutorial-with-ion-loading-example/
+    console.log("loadingHide");
+    const popover = await this.loadingController.getTop();
+    if (popover)
+      await popover.dismiss(null);    
+    else  
+      setTimeout(() => {this.loadingHide()}, 1000);
+  }	
 
   filtra( el : any){
     const value=el.target.value;
