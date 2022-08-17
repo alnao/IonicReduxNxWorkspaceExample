@@ -39,6 +39,8 @@ To create app components
 
 `nx generate @nrwl/angular:component annotazioni --export=true --routing --project=exampleapp`
 
+`nx generate @nrwl/angular:service Auth --export=true --routing --project=exampleapp`
+
 
 
 

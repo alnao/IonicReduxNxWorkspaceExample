@@ -13,16 +13,21 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { IonicStorageModule } from '@ionic/storage-angular';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoginComponent],
   entryComponents: [],
   imports: [
+    IonicStorageModule.forRoot(),
     ExampleCustomLibModule,ExampleCentralLibModule,
     BrowserModule,
     FormsModule, ReactiveFormsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    HttpClientModule,
     StoreModule.forRoot(
       {},
       {
@@ -37,6 +42,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+    LoginComponent
+  ]
 })
 export class AppModule {}

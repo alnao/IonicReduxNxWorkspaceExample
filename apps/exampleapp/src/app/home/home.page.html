@@ -1,6 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-title> App AlNao Angular Ionic React </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="this.logout()">
+        Logout <ion-icon slot="end" name="log-out" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
