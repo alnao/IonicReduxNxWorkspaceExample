@@ -13,6 +13,8 @@ import { HttpClientModule } from "@angular/common/http";
 //import { Http } from '@capacitor-community/http';
 import * as fromUpdateannotazione from "./+state/annotazioni/updateannotazione.reducer";
 import { UpdateannotazioneEffects } from "./+state/annotazioni/updateannotazione.effects";
+import * as fromAuth from "./+state/auth/auth.reducer";
+import { AuthEffects } from "./+state/auth/auth.effects";
 
 @NgModule({
   imports: [
@@ -30,7 +32,8 @@ import { UpdateannotazioneEffects } from "./+state/annotazioni/updateannotazione
       fromUpdateannotazione.UpdateannotazioneReducer
     ),
     EffectsModule.forFeature([UpdateannotazioneEffects]),
-  ]//,providers: [HTTP]
-
+    StoreModule.forFeature(fromAuth.AUTH_FEATURE_KEY, fromAuth.Authreducer),
+    EffectsModule.forFeature([AuthEffects]),
+  ], //,providers: [HTTP]
 })
 export class ExampleCentralLibModule {}
