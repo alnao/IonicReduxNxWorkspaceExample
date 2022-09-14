@@ -4,7 +4,8 @@ import { AlertController } from "@ionic/angular";
 import { Observable } from "rxjs";
 import { map, take } from "rxjs/operators";
 import { select, Store } from '@ngrx/store';
-import { isUserLogged } from "@frontend/example-central-lib";
+import { getUtente, isUserLogged } from "@frontend/example-central-lib";
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +15,16 @@ export class AuthGuard implements CanActivate{
        private alertCtrl: AlertController) { }
 
     canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
-      let isLogged$ = this.store.pipe(select(isUserLogged));
-      return isLogged$.pipe( map( (value) => {
-        if (!value){
+      let utente$ = this.store.pipe(select(getUtente));
+      return utente$.pipe( map( (ut) => {
+        let utenteAutenticato: boolean = 
+          (ut!== undefined && ut.towenJwt!==null && ut.towenJwt!=='');
+        if (utenteAutenticato){
+          const jwtService = new JwtHelperService();
+          utenteAutenticato = !jwtService.isTokenExpired(ut.towenJwt);
+          //console.log(!jwtService.isTokenExpired(ut.towenJwt));
+        }
+        if (!utenteAutenticato){ 
           this.alertCtrl.create({
             header: 'Unauthorized',
             message: 'You are not allowed to access that page.',
@@ -24,8 +32,10 @@ export class AuthGuard implements CanActivate{
             }).then(alert => alert.present());
           this.router.navigateByUrl('/login');
         }
-        return value;
+        //console.log("utenteAutenticato" + utenteAutenticato);
+        return utenteAutenticato;
       }));
+
 /* old verSION con ionic-store
       return this.auth.user?.pipe(
         take(1),
