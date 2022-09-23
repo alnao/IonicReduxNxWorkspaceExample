@@ -24,11 +24,13 @@ const routes: Routes = [
     path: 'annotazioni',
     component : AnnotazioniComponent
     ,canActivate: [AuthGuard]
+    ,data : {roles : ['ANNOTAZIONI']}
   },
   {
     path: 'annotazione/:id',
     component : AnnotazioneComponent
     ,canActivate: [AuthGuard]
+    ,data : {roles : ['ANNOTAZIONI']}
   }
 ];
 
