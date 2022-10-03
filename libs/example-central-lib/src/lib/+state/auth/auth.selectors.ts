@@ -1,3 +1,4 @@
+import { JwtHelperService } from "@auth0/angular-jwt";
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import {
   AUTH_FEATURE_KEY,
@@ -36,13 +37,28 @@ export const getSelectedId = createSelector(
   (state: State) => state.selectedId
 );*/
 
+export const isUserEnabledRole = createSelector(  getAuthState,
+  (state: AuthState, role : string) => {
+    let auth=false;
+    const ut=selectAll(state)[0];
+    const jwtService = new JwtHelperService();
+    const ruoli  : any[]= jwtService.decodeToken(ut.towenJwt)['role'];
+    //console.log(ruoli);
+    if ((ruoli!==undefined ) && (ruoli.some( r => r.authority === role ) )){
+      auth=true;
+    }
+    return auth;
+  }
+);
+
+
 export const getUtente = createSelector(
   getAuthState,
   (state: AuthState) => selectAll(state)[0]
 );
 export const isUserLogged = createSelector(
   getAuthState,
-  (state: AuthState) => { console.log ("isUserLogged",selectAll(state)[0]);
+  (state: AuthState) => { //console.log ("isUserLogged",selectAll(state)[0]);
     return selectAll(state)[0]?.towenJwt!==null && selectAll(state)[0]!== undefined;
   }
 );

@@ -12,7 +12,8 @@
 
 <ion-content [fullscreen]="true">
   <ion-menu-toggle  auto-hide="false"  >
-    <ion-item routerDirection="root" routerLink="/annotazioni" routerLinkActive="selected" detail="true" >
+    <ion-item routerDirection="root" routerLink="/annotazioni" routerLinkActive="selected" detail="true" 
+      *ngIf="visualizzaAnnotazioni">
       <ion-label   >Lista Annotazioni</ion-label>
     </ion-item>
     <ion-item>
