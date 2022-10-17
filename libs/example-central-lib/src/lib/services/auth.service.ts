@@ -1,11 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
-import { BehaviorSubject, from, Observable, of } from 'rxjs';
-import { map, switchMap, take } from 'rxjs/operators';
+import { BehaviorSubject, from, Observable, of} from 'rxjs';
+import { catchError, map, switchMap, take } from 'rxjs/operators';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import { Storage } from '@ionic/storage-angular';
+import { getJwtToken } from '../+state/auth/auth.selectors';
+import { select, Store } from '@ngrx/store';
 
 const helper=new JwtHelperService();
 const TOKEN_KEY='jwt-token';
@@ -77,4 +79,34 @@ export class AuthService {
     });
   }
  
+}
+
+
+@Injectable()
+export class JwtInterceptor implements HttpInterceptor {
+  constructor(private store: Store) { }
+
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    // add auth header with jwt if user is logged in and request is to api url
+    const token$= this.store.pipe(select(getJwtToken ) );
+    let token = null;
+    token$.subscribe( v => token=v ); 
+    if (token && request.method!=='OPTION') {
+        request = request.clone({ 
+            setHeaders: { //...request.headers,
+                Authorization: `Bearer ${token}`
+            }
+        });
+    }
+    return next.handle(request)/*.pipe(
+      catchError((err,el) => {
+        if (err instanceof HttpErrorResponse) {
+          console.log(err);
+          if (err.status === 401) {
+         }
+        }
+        return el;
+      }) 
+    )*/;
+  }
 }

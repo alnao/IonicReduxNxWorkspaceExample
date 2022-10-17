@@ -43,7 +43,7 @@ export class AnnotazioniComponent implements OnInit {
         console.log("Errore:" + action.error.message);
         this.alertError(action.error.message + JSON.stringify(action.error), "" );
       });
-    setTimeout(() => {if (this.isLoaded$) {this.searchbar.setFocus()}}, 1000);
+    setTimeout(() => {if (this.isLoaded$ && this.searchbar) {this.searchbar.setFocus()}}, 1000);
 
     this.actionListener$.pipe(skip(1) // optional: skips initial logging done by ngrx
     ).pipe(ofType( loadAnnotazioniSuccess ),
