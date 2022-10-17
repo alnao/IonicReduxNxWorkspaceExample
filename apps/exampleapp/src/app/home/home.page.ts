@@ -3,7 +3,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { getUtente, isUserEnabledRole } from '@frontend/example-central-lib';
+import { getUtente, getUtenteName, isUserEnabledRole } from '@frontend/example-central-lib';
 import { select, Store } from '@ngrx/store';
 import { AuthService } from 'libs/example-central-lib/src/lib/services/auth.service';
 import { map } from 'rxjs/operators';
@@ -14,7 +14,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit{
-
+  userName : string ="";
   //EchoComponentComponent
   constructor(private auth: AuthService,private store: Store) {}
 
@@ -32,6 +32,9 @@ export class HomePage implements OnInit{
     */
     this.store.pipe(select(isUserEnabledRole,'ANNOTAZIONI')).subscribe(
       val => this.visualizzaAnnotazioni=val
+    );
+    this.store.pipe(select(getUtenteName)).subscribe(
+      val => this.userName=val
     );
   }
   visualizzaAnnotazioni: boolean=false;

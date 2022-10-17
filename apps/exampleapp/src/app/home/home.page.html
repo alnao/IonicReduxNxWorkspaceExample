@@ -12,6 +12,9 @@
 
 <ion-content [fullscreen]="true">
   <ion-menu-toggle  auto-hide="false"  >
+    <ion-item *ngIf="userName!==''">
+      Bentornato {{userName}}
+    </ion-item>
     <ion-item routerDirection="root" routerLink="/annotazioni" routerLinkActive="selected" detail="true" 
       *ngIf="visualizzaAnnotazioni">
       <ion-label   >Lista Annotazioni</ion-label>

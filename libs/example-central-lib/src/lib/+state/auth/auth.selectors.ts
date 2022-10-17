@@ -63,6 +63,15 @@ export const isUserLogged = createSelector(
   }
 );
 
+export const getUtenteName = createSelector(  getAuthState,
+  (state: AuthState, role : string) => {
+    let auth=false;
+    const ut=selectAll(state)[0];
+    const jwtService = new JwtHelperService();
+    return jwtService.decodeToken(ut.towenJwt)['sub'];
+  }
+);
+
 
 /*
 export const getSelected = createSelector(
