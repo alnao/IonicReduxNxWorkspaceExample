@@ -21,7 +21,15 @@
             [routerLink]="['/','annotazione', el.id ]"
              detail="true"  routerLinkActive="active"
         >
-            <ion-label>{{el.nome}}</ion-label>
+            <ion-thumbnail slot="start">
+              <!-- <img [src]="getImage(el.stato)" /> -->
+              <ion-icon [name]="getImage(el.stato)"  size="large"></ion-icon>
+            </ion-thumbnail>
+            <ion-label>
+              <h3>Nome: {{ el.nome }}</h3>
+              <p>Tipo: {{ el.tipo }}</p>
+              <p>Fase: {{ el.fase }}</p>
+            </ion-label>
         </ion-item>
     </ion-list> 
     <frontend-spinner *ngIf="!(isLoaded$ | async)  && false" [testo]="spinnerMessage"></frontend-spinner>

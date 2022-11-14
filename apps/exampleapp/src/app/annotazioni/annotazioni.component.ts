@@ -89,5 +89,9 @@ export class AnnotazioniComponent implements OnInit {
       map(items => items.filter( item => item.nome.toLowerCase().indexOf(value) > -1 ))
     );
   }
+  getImage(value){
+    if (value=="attivo") return "checkmark";
+    return "close";
+  }
 
 }
