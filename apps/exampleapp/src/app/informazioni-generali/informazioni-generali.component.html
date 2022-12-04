@@ -1,0 +1,25 @@
+<ion-modal *ngIf="isOpen" [isOpen]="isOpen">
+    <ion-header>
+      <ion-header [translucent]="true">
+        <ion-toolbar color="primary">
+          <ion-title>Informazioni generali</ion-title>
+        </ion-toolbar>
+      </ion-header>
+    </ion-header>
+    <ion-content class="ion-padding">
+        <ion-card>
+            <ion-card-header>
+                <ion-card-title>Applicazione di esempio</ion-card-title>
+                <ion-card-subtitle>realizzata da Alberto Nao</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+                Questa applicazione di esempio è realizzata con Ionic, Redux e NgRx.
+                Il codice è disponibile nel repository GitHUB
+                <ion-button fill="outline" target="_blank"
+                    href="https://github.com/alnao/AngularIonicReduxWorkspaceWebAndAppExample"
+                >Repository GitHUB</ion-button>
+            </ion-card-content>
+        </ion-card>
+        <ion-button  expand="block" (click)="close()" >Chiudi</ion-button>
+    </ion-content>
+</ion-modal>

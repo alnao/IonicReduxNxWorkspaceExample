@@ -77,7 +77,20 @@ export class AnnotazioneComponent implements OnInit {
     console.log(this.noteForm.value);
     const id=this.noteForm.value.id;
     //form --> UpdateannotazioneEntity with the same attribute
-    let element : UpdateannotazioneEntity= this.noteForm.value ;
+    let element : UpdateannotazioneEntity={ //this.noteForm.value ma andava in errore
+      id: this.noteForm.value.id,
+      nome: this.noteForm.value.nome,
+      descrizione: this.noteForm.value.descrizione,
+      tipo : this.noteForm.value.tipo,
+      stato : this.noteForm.value.stato,
+      fase : this.noteForm.value.fase,
+      datainserimento: this.noteForm.value.datainserimento,
+      utenteinserimento: this.noteForm.value.utenteinserimento,
+      datamodifica: this.noteForm.value.datamodifica,
+      utentemodifica: this.noteForm.value.utentemodifica,
+    };
+
+      
     if (id==0){
       element.datainserimento=""+Date.now();
       element.utenteinserimento="Utente";
@@ -105,7 +118,7 @@ export class AnnotazioneComponent implements OnInit {
   
 
   noteForm = new FormGroup({
-    id: new FormControl(),
+    id: new FormControl()  ,
     nome: new FormControl(),
     descrizione: new FormControl(),
     tipo : new FormControl(),

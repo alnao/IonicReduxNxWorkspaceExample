@@ -110,3 +110,4 @@ apps/exampleapp/android
 environment.prod.ts
 apps/exampleapp/src/environments/environment.prod.ts
 
+.angular

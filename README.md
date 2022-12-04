@@ -42,7 +42,11 @@ To create app components
 `nx generate @nrwl/angular:service Auth --export=true --routing --project=exampleapp`
 
 
+To resolve compile error
 
+`unset NODE_OPTIONS`
+
+`export NODE_OPTIONS=--openssl-legacy-provider`
 
 
 

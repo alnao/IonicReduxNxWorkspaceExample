@@ -1,4 +1,4 @@
-import { Component, OnInit, SystemJsNgModuleLoader, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AnnotazioniEntity, getAllAnnotazioni, getAnnotazioniLoaded, loadAnnotazioniFailure, loadAnnotazioniInit, loadAnnotazioniSuccess, loadUpdateannotazioneFailure, loadUpdateannotazioneSuccess } from '@frontend/example-central-lib';

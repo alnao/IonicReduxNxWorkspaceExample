@@ -2,7 +2,7 @@
  * Interface for the 'Annotazioni' data
  */
 export interface AnnotazioniEntity {
-  id: string | number; // Primary ID
+  id: string | number | null | any; // Primary ID
   nome: string;
   descrizione: string;
   tipo : string;

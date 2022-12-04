@@ -10,12 +10,15 @@ import { ExampleCustomLibModule } from '@frontend/example-custom-lib';
 import { HomePageRoutingModule } from './home-routing.module';
 import { AnnotazioniModule } from '../annotazioni/annotazioni.module';
 import { AnnotazioneModule } from '../annotazione/annotazione.module';
+import { SelezioneMultiplaComponent } from '../selezione-multipla/selezione-multipla.component';
+import { InformazioniGeneraliComponent } from '../informazioni-generali/informazioni-generali.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule,
     HomePageRoutingModule,
     ExampleCentralLibModule,ExampleCustomLibModule,
-    AnnotazioniModule,AnnotazioneModule
+    AnnotazioniModule,AnnotazioneModule,
+    InformazioniGeneraliComponent
   ],
   declarations: [HomePage],
 })

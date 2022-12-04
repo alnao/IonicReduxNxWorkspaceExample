@@ -5,6 +5,12 @@
     </ion-buttons>
     <ion-title> Annotazioni </ion-title>
     <ion-buttons slot="primary">
+
+      <ion-button (click)="select.open()" tappable color="dark" outline round small>
+        Send
+        <ion-icon slot="end" name="reorder"></ion-icon>
+      </ion-button>
+
       <ion-button [routerLink]="['/','annotazione', '0' ]" color="dark" outline round small>
         New
         <ion-icon slot="end" name="create"></ion-icon>
@@ -33,4 +39,6 @@
         </ion-item>
     </ion-list> 
     <frontend-spinner *ngIf="!(isLoaded$ | async)  && false" [testo]="spinnerMessage"></frontend-spinner>
+    <frontend-selezione-multipla #select></frontend-selezione-multipla>
+
 </ion-content> 

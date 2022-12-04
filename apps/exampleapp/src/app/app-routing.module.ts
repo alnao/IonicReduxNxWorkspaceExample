@@ -4,6 +4,7 @@ import { AnnotazioneComponent } from './annotazione/annotazione.component';
 import { AnnotazioniComponent } from './annotazioni/annotazioni.component';
 import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
+import { SelezioneMultiplaComponent } from './selezione-multipla/selezione-multipla.component';
 
 
 
@@ -29,6 +30,12 @@ const routes: Routes = [
   {
     path: 'annotazione/:id',
     component : AnnotazioneComponent
+    ,canActivate: [AuthGuard]
+    ,data : {roles : ['ANNOTAZIONI']}
+  },
+  {
+    path: 'selezioneMultipla',
+    component : SelezioneMultiplaComponent
     ,canActivate: [AuthGuard]
     ,data : {roles : ['ANNOTAZIONI']}
   }

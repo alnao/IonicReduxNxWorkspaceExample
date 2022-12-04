@@ -17,6 +17,8 @@ import { LoginComponent } from './login/login.component';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from 'libs/example-central-lib/src/lib/services/auth.service';
+import { SelezioneMultiplaComponent } from './selezione-multipla/selezione-multipla.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],
@@ -28,6 +30,7 @@ import { JwtInterceptor } from 'libs/example-central-lib/src/lib/services/auth.s
     FormsModule, ReactiveFormsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    CommonModule,
     HttpClientModule,
     StoreModule.forRoot(
       {},
@@ -48,7 +51,8 @@ import { JwtInterceptor } from 'libs/example-central-lib/src/lib/services/auth.s
   ],
   bootstrap: [AppComponent],
   exports: [
-    LoginComponent
+    LoginComponent,
+  //  SelezioneMultiplaComponent
   ]
 })
 export class AppModule {}

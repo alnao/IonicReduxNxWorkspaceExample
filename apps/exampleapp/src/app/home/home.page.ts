@@ -1,6 +1,3 @@
-//import { EchoComponentComponent } from '@frontend/example-custom-lib/EchoComponentComponent';
-//import { EchoComponentComponent } from '@frontend/example-custom-lib';
-
 import { Component, OnInit } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { getUtente, getUtenteName, isUserEnabledRole } from '@frontend/example-central-lib';
@@ -15,7 +12,6 @@ import { map } from 'rxjs/operators';
 })
 export class HomePage implements OnInit{
   userName : string ="";
-  //EchoComponentComponent
   constructor(private auth: AuthService,private store: Store) {}
 
   logout(){  console.log("Logout"); this.auth.logout();}

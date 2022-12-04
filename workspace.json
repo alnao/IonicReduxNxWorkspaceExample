@@ -18,7 +18,9 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/example-central-lib"],
+          "outputs": [
+            "coverage/libs/example-central-lib"
+          ],
           "options": {
             "jestConfig": "libs/example-central-lib/jest.config.js",
             "passWithNoTests": true
@@ -44,7 +46,9 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/example-custom-lib"],
+          "outputs": [
+            "coverage/libs/example-custom-lib"
+          ],
           "options": {
             "jestConfig": "libs/example-custom-lib/jest.config.js",
             "passWithNoTests": true
@@ -142,7 +146,9 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/exampleapp"],
+          "outputs": [
+            "coverage/apps/exampleapp"
+          ],
           "options": {
             "jestConfig": "apps/exampleapp/jest.config.js",
             "passWithNoTests": true
@@ -262,12 +268,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/exampleapp-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/exampleapp-e2e/**/*.{js,ts}"
+            ]
           }
         }
       },
       "tags": [],
-      "implicitDependencies": ["exampleapp"]
+      "implicitDependencies": [
+        "exampleapp"
+      ]
     },
     "exampleweb": {
       "projectType": "application",
@@ -358,7 +368,9 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/exampleweb"],
+          "outputs": [
+            "coverage/apps/exampleweb"
+          ],
           "options": {
             "jestConfig": "apps/exampleweb/jest.config.js",
             "passWithNoTests": true
@@ -478,12 +490,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/exampleweb-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/exampleweb-e2e/**/*.{js,ts}"
+            ]
           }
         }
       },
       "tags": [],
-      "implicitDependencies": ["exampleweb"]
+      "implicitDependencies": [
+        "exampleweb"
+      ]
     }
   }
 }

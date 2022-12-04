@@ -6,16 +6,19 @@ import { AnnotazioniComponent } from './annotazioni.component';
 import { IonicModule } from '@ionic/angular';import { AnnotazioneModule } from '../annotazione/annotazione.module';
 
 import { ExampleCustomLibModule } from '@frontend/example-custom-lib';
+import { SelezioneMultiplaComponent } from '../selezione-multipla/selezione-multipla.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    AnnotazioniComponent
+    AnnotazioniComponent,SelezioneMultiplaComponent
   ],
   imports: [IonicModule,
-    CommonModule,
+    CommonModule,FormsModule,
     AnnotazioniRoutingModule,
     ExampleCustomLibModule,
+    
   ],
   exports: [
     AnnotazioniComponent
