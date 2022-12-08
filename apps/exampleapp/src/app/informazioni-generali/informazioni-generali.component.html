@@ -1,4 +1,8 @@
-<ion-modal *ngIf="isOpen" [isOpen]="isOpen">
+<ion-modal *ngIf="isOpen" [isOpen]="isOpen"
+[initialBreakpoint]="0.25"
+[breakpoints]="[0, 0.25, 0.5, 0.75]"
+handleBehavior="cycle"
+>
     <ion-header>
       <ion-header [translucent]="true">
         <ion-toolbar color="primary">

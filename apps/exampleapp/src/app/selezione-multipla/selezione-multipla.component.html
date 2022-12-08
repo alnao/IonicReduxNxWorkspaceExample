@@ -1,10 +1,30 @@
-<ion-modal *ngIf="isOpen" [isOpen]="isOpen">
-  <ion-header>
+<ion-modal [isOpen]="isOpen" handleBehavior="cycle">
+  <ng-template>
     <ion-header [translucent]="true">
-      <ion-toolbar color="primary">
-        <ion-title>Selezione multipla</ion-title>
-      </ion-toolbar>
-      
+        <ion-toolbar color="primary">
+          <ion-title>{{ title }}</ion-title>
+          <ion-buttons slot="primary">
+            <ion-button  (click)="close()" tappable color="dark" outline round small >
+              <ion-icon slot="end" name="close"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
     </ion-header>
-  </ion-header>
+    <ion-content class="ion-padding">
+      <ion-list *ngIf="data | async">
+        <ion-item *ngFor="let el of data | async ; index as i">
+          <ion-checkbox slot="start"  [(ngModel)]="el.selected" 
+            (ionChange)="itemSelected()" ></ion-checkbox>
+          <ion-label>{{ el.nome }}</ion-label>
+        </ion-item>
+      </ion-list> 
+      <ion-button *ngIf="selected.length > 0" expand="block" (click)="confirm()">
+        Invia {{selected.length}} selezionati ( 
+        <span *ngFor="let item of selected; let last=last">
+            {{ item.nome }}{{ last ? "" : ", "}}
+        </span>
+        )
+      </ion-button>
+    </ion-content>
+  </ng-template>
 </ion-modal>

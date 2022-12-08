@@ -39,6 +39,9 @@
         </ion-item>
     </ion-list> 
     <frontend-spinner *ngIf="!(isLoaded$ | async)  && false" [testo]="spinnerMessage"></frontend-spinner>
-    <frontend-selezione-multipla #select></frontend-selezione-multipla>
-
+    <frontend-selezione-multipla #select 
+      [data]="list$.pipe()"
+      (selectedToCaller)="selectedToCaller($event)"
+    >
+    </frontend-selezione-multipla>
 </ion-content> 

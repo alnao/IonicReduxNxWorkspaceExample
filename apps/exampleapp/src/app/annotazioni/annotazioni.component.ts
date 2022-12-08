@@ -90,8 +90,27 @@ export class AnnotazioniComponent implements OnInit {
     );
   }
   getImage(value){
+    if (value=="arrow") return "arrow-forward";
     if (value=="attivo") return "checkmark";
     return "close";
+  }
+
+  //gestione ritornata dal selezione multipla
+  selectedToCaller(event){
+    const l : any[]=event;
+    this.list$ = this.store.pipe(select(getAllAnnotazioni)).pipe(
+      //per visualizzare solo i selezionati
+      //map(items => items.filter( item => l.findIndex ( x => x.id == item.id)>=0 ? item : null ))
+      //cambio lo stato,cio+ ciclo per ogni elemento, se è nella lista event cambio lo stato
+      map( li => {
+        let listaa : AnnotazioniEntity[]=[];
+        li.forEach( el=> { 
+          if (l.findIndex ( x => x.id == el.id)>=0){el.stato="arrow"; }
+          listaa.push(el); 
+        })
+        return listaa;
+      })
+    );
   }
 
 }
