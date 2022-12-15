@@ -7,6 +7,7 @@ import { ActionsSubject, select, Store } from '@ngrx/store';
 import { $CombinedState } from 'redux';
 import { Observable } from 'rxjs';
 import { map, skip } from 'rxjs/operators';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'frontend-annotazione',
@@ -20,7 +21,8 @@ export class AnnotazioneComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private actionListener$: ActionsSubject
+    private actionListener$: ActionsSubject,
+    private toastController: ToastController
   ) { }
   showSpinner: Boolean = false;
   list$: Observable<AnnotazioniEntity[]> = this.store.pipe(select(getAllAnnotazioni)
@@ -105,6 +107,7 @@ export class AnnotazioneComponent implements OnInit {
     ).pipe(ofType(loadUpdateannotazioneSuccess),
       ).subscribe((action) => {
         this.showSpinner=false;
+        this.showToast();
         console.log("success");
         this.store.dispatch(loadAnnotazioniInit()); //to reload all list
         this.router.navigate(["annotazioni"]); //route to the list
@@ -114,6 +117,17 @@ export class AnnotazioneComponent implements OnInit {
       ).subscribe((action) => {
         console.log("Error");
       });
+  }
+  async showToast() {
+    const toast = await this.toastController.create({
+      message: 'Salvataggio completato!',
+      duration: 3000,
+      cssClass: 'custom-toast',
+      position: 'top',
+      /*buttons: [{text: 'Dismiss',role: 'cancel'}],*/
+    });
+
+    await toast.present();
   }
   
 
