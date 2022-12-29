@@ -34,14 +34,39 @@
     </ion-item>
     <ion-item>
       <ion-label  position="stacked" color="medium" >Tipo 
-          <ion-icon *ngIf="noteForm.controls['tipo'].invalid" name="alert-circle-outline" color="danger"></ion-icon></ion-label>
-      <ion-input type="text" id="tipo" name="tipo" formControlName="tipo"></ion-input>
+        <ion-icon *ngIf="noteForm.controls['tipo'].invalid" name="alert-circle-outline" color="danger"></ion-icon>
+      </ion-label>
+      <!--<ion-input type="text" id="tipo" name="tipo" formControlName="tipo"></ion-input>-->
+      <ion-list [inset]="true" ><ion-radio-group  formControlName="tipo">
+        <ion-item>
+          <ion-label>Friends</ion-label>
+          <ion-radio value="friends" checked></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Family</ion-label>
+          <ion-radio value="family"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Enemies</ion-label>
+          <ion-radio value="enemies" [disabled]="true"></ion-radio>
+        </ion-item>
+      </ion-radio-group></ion-list>
+          
     </ion-item>
     <ion-item>
       <ion-label  position="stacked" color="medium" >Stato 
         <ion-icon *ngIf="noteForm.controls['stato'].invalid" name="alert-circle-outline" color="danger"></ion-icon>
       </ion-label>
-      <ion-input type="text" id="stato" name="stato" formControlName="stato"></ion-input>
+      <!--<ion-input type="text" id="stato" name="stato" formControlName="stato"></ion-input>-->
+      <ion-segment formControlName="stato"  mode="md">
+        <ion-segment-button value="attivo">
+          <ion-label>Attivo</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="bloccato">
+          <ion-label>Bloccato</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+
     </ion-item>
     <ion-item>
       <ion-label  position="stacked" color="medium" >Fase
