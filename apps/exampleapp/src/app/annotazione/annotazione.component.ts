@@ -129,6 +129,9 @@ export class AnnotazioneComponent implements OnInit {
 
     await toast.present();
   }
+  changeStatus(event){ //console.log(event);
+    this.noteForm.controls['stato'].setValue( event.detail.checked ? 'attivo' : 'bloccato' );
+  }
   
 
   noteForm = new FormGroup({

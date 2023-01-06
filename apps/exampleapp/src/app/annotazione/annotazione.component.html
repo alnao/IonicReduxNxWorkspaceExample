@@ -55,9 +55,15 @@
     </ion-item>
     <ion-item>
       <ion-label  position="stacked" color="medium" >Stato 
+        <!-- {{noteForm.controls['stato'].value}} -->
         <ion-icon *ngIf="noteForm.controls['stato'].invalid" name="alert-circle-outline" color="danger"></ion-icon>
       </ion-label>
       <!--<ion-input type="text" id="stato" name="stato" formControlName="stato"></ion-input>-->
+      <ion-toggle slot="end" 
+        checked="{{noteForm.controls['stato'].value === 'attivo'}}"
+        (ionChange)="changeStatus($event)"
+      ></ion-toggle>
+      <!--
       <ion-segment formControlName="stato"  mode="md">
         <ion-segment-button value="attivo">
           <ion-label>Attivo</ion-label>
@@ -66,7 +72,7 @@
           <ion-label>Bloccato</ion-label>
         </ion-segment-button>
       </ion-segment>
-
+      -->
     </ion-item>
     <ion-item>
       <ion-label  position="stacked" color="medium" >Fase
