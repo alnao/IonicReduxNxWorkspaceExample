@@ -37,6 +37,7 @@
         <ion-icon *ngIf="noteForm.controls['tipo'].invalid" name="alert-circle-outline" color="danger"></ion-icon>
       </ion-label>
       <!--<ion-input type="text" id="tipo" name="tipo" formControlName="tipo"></ion-input>-->
+      <!--
       <ion-list [inset]="true" ><ion-radio-group  formControlName="tipo">
         <ion-item>
           <ion-label>Friends</ion-label>
@@ -51,7 +52,13 @@
           <ion-radio value="enemies" [disabled]="true"></ion-radio>
         </ion-item>
       </ion-radio-group></ion-list>
-          
+      -->
+      <ion-select placeholder="Seleziona il tipo" formControlName="tipo" okText="Seleziona" cancelText="Cancella" 
+      interface="action-sheet" >
+        <ion-select-option value="friends">Friends</ion-select-option>
+        <ion-select-option value="family">Family</ion-select-option>
+        <ion-select-option value="enemies">Enemies</ion-select-option>
+      </ion-select>
     </ion-item>
     <ion-item>
       <ion-label  position="stacked" color="medium" >Stato 
