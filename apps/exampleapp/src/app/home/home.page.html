@@ -5,9 +5,13 @@
       <ion-button (click)="infoG.open()" tappable  outline round small>
         Info <ion-icon name="information-circle-outline"></ion-icon>
       </ion-button>
-      <ion-button (click)="this.logout()">
-        Logout <ion-icon slot="end" name="log-out" ></ion-icon>
-      </ion-button>
+      <ion-chip *ngIf="userName!==''"  color="dark">
+        <ion-avatar>
+          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+        <ion-label>{{userName}}</ion-label>
+        <ion-icon name="log-out" (click)="this.logout()"></ion-icon>
+      </ion-chip>
     </ion-buttons>
 
   </ion-toolbar>
@@ -15,9 +19,6 @@
 
 <ion-content [fullscreen]="true">
   <ion-menu-toggle  auto-hide="false"  >
-    <ion-item *ngIf="userName!==''">
-      Bentornato {{userName}}
-    </ion-item>
     <ion-item routerDirection="root" routerLink="/annotazioni" routerLinkActive="selected" detail="true" 
       *ngIf="visualizzaAnnotazioni">
       <ion-label   >Lista Annotazioni</ion-label>
