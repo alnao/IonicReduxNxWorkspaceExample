@@ -38,6 +38,10 @@
             </ion-label>
         </ion-item>
     </ion-list> 
+    <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
     <frontend-spinner *ngIf="!(isLoaded$ | async)  && false" [testo]="spinnerMessage"></frontend-spinner>
     <frontend-selezione-multipla #select 
       [data]="list$.pipe()"

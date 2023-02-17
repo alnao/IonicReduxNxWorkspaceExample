@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AnnotazioniEntity, getAllAnnotazioni, getAnnotazioniLoaded, loadAnnotazioniFailure, loadAnnotazioniInit, loadAnnotazioniSuccess, loadUpdateannotazioneFailure, loadUpdateannotazioneSuccess } from '@frontend/example-central-lib';
-import { IonSearchbar, LoadingController } from '@ionic/angular';
+import { InfiniteScrollCustomEvent, IonSearchbar, LoadingController } from '@ionic/angular';
 import { AnnotazioniEffects } from 'libs/example-central-lib/src/lib/+state/annotazioni/annotazioni.effects';
 import { Observable } from 'rxjs';
 import { ActionsSubject, select, Store } from '@ngrx/store';
@@ -27,7 +27,6 @@ export class AnnotazioniComponent implements OnInit {
   spinnerMessage: string = "Caricamento in corso";
   //bottone che esegue il dispatch della action init
   buttonLoadAnnotazioni() {
-    
     this.store.dispatch(loadAnnotazioniInit());
   }
   @ViewChild('autofocus', { static: false }) searchbar: IonSearchbar;
@@ -111,6 +110,29 @@ export class AnnotazioniComponent implements OnInit {
         return listaa;
       })
     );
+  }
+
+  onIonInfinite(ev) { //console.log(ev);
+    //a titolo di esempio eseguo un timeout per far sembrare passare un po' di tempo
+    //aggiungo un elemento vuoto alla lista solo come esempio
+    setTimeout(() => {
+      this.aggiungiElemento(ev);
+      (ev as InfiniteScrollCustomEvent).target.complete();
+      console.log("onIonInfinite "+ ev.timeStamp);
+    }, 500);
+  }
+  aggiungiElemento(ev){
+    //nota: non andrebbe fatto così ma andrebbe eseguita il dispath di una azione
+    //this.store.dispatch(loadAnnotazioniInit());
+    console.log("aggiungiElemento "+ ev.timeStamp);
+    const elementoVuoto : AnnotazioniEntity={nome:'aggiunto da IonIfinite', fase: ev.timeStamp} as AnnotazioniEntity;
+    this.list$ = this.list$.pipe(
+      map ( li => {
+        li.push(elementoVuoto);
+        console.log("aggiungiElemento "+ li.length);
+        return li;
+      })
+    ) ;
   }
 
 }
