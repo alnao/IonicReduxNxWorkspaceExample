@@ -1,5 +1,11 @@
 
-# Angular Ionic Redux Workspace
+# IonicReduxWorkspaceExample
+Progetto con 
+- Angular come framework base
+- Ionic come toolkit per l'interfaccia web e lo sviluppo dell'app
+- Cordova come container per la creazione dell'app per Andoid & IOs
+- Nx Workspace per la gestione di due librerie interne e due progetti separati per web e app
+- Redux come libreria per la gestione dello store e dei servizi
 
 ## Run apps
 
