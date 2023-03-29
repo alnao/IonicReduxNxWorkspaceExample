@@ -42,8 +42,17 @@ export class HomePage implements OnInit{
   @ViewChild('graficoDiEsempioEl') private graficoDiEsempioEl: ElementRef;
   graficoDiEsempioChart: any;
   ngAfterViewInit() {
+    //spostati nel toogleGrafico
+    //Chart.register(...registerables); //necessario, spostabile anche nel costruttore
+    //this.graficoDiEsempioMethod();
+  }
+  visualizzaGrafico : boolean=false;
+  toogleGrafico(){
+    this.visualizzaGrafico=true; 
     Chart.register(...registerables); //necessario, spostabile anche nel costruttore
-    this.graficoDiEsempioMethod();
+    setTimeout(() => { //timeout necessario per evitare errori di oggetti non valorizzati
+      this.graficoDiEsempioMethod();
+    }, 1000);
   }
   graficoDiEsempioMethod() {
     this.graficoDiEsempioChart = new Chart(this.graficoDiEsempioEl.nativeElement, {

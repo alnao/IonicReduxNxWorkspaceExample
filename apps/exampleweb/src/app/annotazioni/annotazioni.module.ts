@@ -5,6 +5,7 @@ import { AnnotazioniRoutingModule } from './annotazioni-routing.module';
 import { AnnotazioniComponent } from './annotazioni.component';
 import { IonicModule } from '@ionic/angular';
 
+import { JwPaginationModule } from 'jw-angular-pagination';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,7 @@ import { IonicModule } from '@ionic/angular';
   ],
   imports: [
     CommonModule,IonicModule,
-    AnnotazioniRoutingModule
+    AnnotazioniRoutingModule,JwPaginationModule
   ],
   exports: [
     AnnotazioniComponent
