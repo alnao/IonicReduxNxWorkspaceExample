@@ -18,6 +18,14 @@
         [pageSize]="2"></jw-pagination>
     </ion-card>
     <div class="pagination">pagination</div>
+    <ion-list *ngIf="isLoaded$ | async">
+      <ion-item *ngFor="let el of listaVisualizzata$ ; index as i"
+          [routerLink]="['/','annotazione-dettaglio', el.id ]"
+          lines="none" detail="true" 
+      >
+        <ion-label class="rossetto">{{el.nome}}</ion-label>
+      </ion-item>
+    </ion-list>
 </ion-content>  
 
 

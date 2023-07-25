@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { getAllAnnotazioni, getAnnotazioniLoaded, loadAnnotazioniInit, loadAnnotazioniSuccess } from '@frontend/example-central-lib';
+import { AnnotazioniEntity, getAllAnnotazioni, getAnnotazioniLoaded, loadAnnotazioniInit, loadAnnotazioniSuccess } from '@frontend/example-central-lib';
 import { ActionsSubject, select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map,skip } from 'rxjs/operators';
@@ -19,6 +19,8 @@ export class AnnotazioniComponent implements OnInit {
     private router: Router) { }
   //proprietà del componente che richiano i selectors
   list$: Observable<any> = this.store.pipe(select(getAllAnnotazioni));
+  lista$: AnnotazioniEntity[] = [];
+  listaVisualizzata$: AnnotazioniEntity[] = [];
   isLoaded$: Observable<any> = this.store.pipe(select(getAnnotazioniLoaded));
   //dispatch della action init
   loadAnnotazioni() {
@@ -31,6 +33,10 @@ export class AnnotazioniComponent implements OnInit {
     this.actionListener$.pipe(skip(1) // optional: skips initial logging done by ngrx
     ).pipe(ofType( loadAnnotazioniSuccess ),
       ).subscribe((action) => {//console.log(action.annotazioni);
+        this.lista$=action.annotazioni;
+        this.listaVisualizzata$=action.annotazioni;
+        this.listaVisualizzata$.sort( (el1, el2) => el1.nome  > el2.nome ? 1 : -1);
+
         if (this.itemlist!==undefined)
           this.itemlist=action.annotazioni;
       });
@@ -41,6 +47,8 @@ export class AnnotazioniComponent implements OnInit {
     this.list$ = this.store.pipe(select(getAllAnnotazioni)).pipe(
       map(items => items.filter( item => item.nome.toLowerCase().indexOf(value) > -1 ))
     );
+    if (value!=='')
+      this.listaVisualizzata$ = this.lista$.filter ( item => item.nome==value)
   }
   
   itemlist = [];
